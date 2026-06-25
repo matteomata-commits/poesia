@@ -2,87 +2,134 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>Cuori e Picche - Poeta</title>
+  <title>Cuori e Picche</title>
 </head>
 
 <body style="font-family: serif; text-align:center; margin-top:80px; padding: 0 20px;">
 
-  <h2>Costruisci il codice con ❤️ e ♠️</h2>
+  <h2>Crea il codice con ❤️ e ♠️</h2>
 
-  <!-- BARRA MOTORE -->
+  <!-- BARRA VISIVA -->
   <input id="input"
     style="font-size:24px; text-align:center; width:300px;"
     readonly
-    placeholder="usa i bottoni sotto">
+    placeholder="premi ❤️ o ♠️">
 
   <br><br>
 
   <!-- BOTTONI -->
-  <button onclick="aggiungi('1')" style="font-size:40px; padding:10px 25px; margin-right:20px;">
+  <button onclick="aggiungi('❤️','1')"
+    style="font-size:40px; padding:10px 25px; margin-right:20px;">
     ❤️
   </button>
 
-  <button onclick="aggiungi('0')" style="font-size:40px; padding:10px 25px;">
+  <button onclick="aggiungi('♠️','0')"
+    style="font-size:40px; padding:10px 25px;">
     ♠️
   </button>
 
   <br><br>
 
   <!-- COMANDI -->
-  <button onclick="invia()" style="font-size:18px;">
-    Invia
-  </button>
-
-  <button onclick="reset()" style="font-size:18px;">
-    Reset
-  </button>
+  <button onclick="invia()" style="font-size:18px;">Invia</button>
+  <button onclick="reset()" style="font-size:18px;">Reset</button>
 
   <!-- OUTPUT -->
   <p id="codice" style="margin-top:20px; color:#888;"></p>
 
-  <div id="output" style="margin-top:30px; font-size:20px; white-space:pre-line;"></div>
+  <div id="output" style="margin-top:30px; font-size:20px;"></div>
 
   <script>
-    // 📖 POESIE
+
+    // 📖 POESIE COMPLETE
     const poesie = {
+
       "1010": {
         titolo: "Goccia di storia",
-        testo: `c'è una goccia di sangue o di rugiada
-che scorre nella memoria del tempo`
+        testo: `c'è  una  goccia  di  sangue  o  di  rugiada
+che  sdrucciola,  tra  i  solchi  della  storia
+che  rende  viva  la  carne  dell'uomo
+c'è  una  goccia  di  sangue  o  di  rugiada
+che  scorre,  tra  gli  incavi  della  fronte
+di  gente  in  gente,  per  generazioni
+sulla  tacita  pelle  dei  mortali
+ai  primi  raggi  del  sole  essa  appare
+e  rifulge  di  morte  e  primavera`
       },
 
       "1100": {
         titolo: "Bandiere di pace",
-        testo: `più bandiere nel vento
-meno guerra nel mondo`
+        testo: `più  bandiere  di  pace 
+sulla  terra
+basta  soldati  morti 
+per  la  guerra
+
+più  aquiloni  in  volo
+più  colombe
+basta  a  chi  soffoca
+il  cielo  di  bombe 
+
+più  fratelli  nel  mondo
+più  alleati
+inondiamo  di  fiori
+i  carri  armati 
+
+più  libri  per  bambini
+e  per  bambine 
+basta  fucili
+bombe  a  mano  e  mine
+
+che  il  vento  scuota 
+le  nostre  bandiere
+basta  bunker
+trincee  e  frontiere`
       },
 
       "1110": {
         titolo: "Luna di cenere",
-        testo: `la luna cade lenta
-come polvere nel cielo`
+        testo: `oggi  la  luna  è  una  perla  di  cenere 
+che  si  fa  polvere  tra  le  mie  dita
+oggi  la  luna  è  una  perla  di  cenere 
+che  sporca  il  grano  e  soffoca  il  raccolto 
+
+sferza  nel  cielo  un  tumulto  di  lame
+grigie  le  lacrime,  austere  le  nuvole   
+tacito  ascolto  il  pianto  del  bracciante
+che  per  anni  ha  mietuto  il  suo  raccolto 
+
+oggi  la  luna  è  una  perla  di  cenere 
+che  si  fa  polvere  tra  le  mie  dita
+oggi  la  luna  è  una  perla  di  cenere 
+che  fa  eco  alle  rovine  del  passato`
       }
+
     };
 
-    // ➕ aggiunge 1 o 0 nella barra
-    function aggiungi(valore) {
-      document.getElementById("input").value += valore;
+    // 🔥 codice nascosto (1 e 0)
+    let codiceInterno = "";
+
+    // ➕ aggiunge emoji + valore
+    function aggiungi(emoji, valore) {
+      document.getElementById("input").value += emoji;
+      codiceInterno += valore;
     }
 
-    // 🚀 invia e controlla
+    // 🚀 invia e mostra poesia
     function invia() {
-      let codice = document.getElementById("input").value;
+      document.getElementById("codice").innerText =
+        "Codice: " + codiceInterno;
 
-      document.getElementById("codice").innerText = "Codice: " + codice;
-
+      const poesia = poesie[codiceInterno];
       const output = document.getElementById("output");
 
-      if (poesie[codice]) {
+      if (poesia) {
         output.innerHTML =
-          "<h3>" + poesie[codice].titolo + "</h3>" +
-          poesie[codice].testo;
+          "<h3>" + poesia.titolo + "</h3>" +
+          "<pre style='white-space:pre-wrap; font-size:18px;'>" +
+          poesia.testo +
+          "</pre>";
       } else {
-        output.innerHTML = "❌ Codice non valido";
+        output.innerHTML = "❌ Codice errato";
       }
     }
 
@@ -91,7 +138,9 @@ come polvere nel cielo`
       document.getElementById("input").value = "";
       document.getElementById("codice").innerText = "";
       document.getElementById("output").innerHTML = "";
+      codiceInterno = "";
     }
+
   </script>
 
 </body>
