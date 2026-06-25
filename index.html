@@ -6,9 +6,9 @@
 </head>
 <body style="font-family: serif; text-align:center; margin-top:80px; padding: 0 20px;">
 
-  <h2>Inserisci ♥ e ♠</h2>
+  <h2>Inserisci emoji (cuori e picche)</h2>
 
-  <input id="input" placeholder="es: ♥♠♥♠" style="font-size:24px; text-align:center;">
+  <input id="input" placeholder="es: ❤️♠❤️♠" style="font-size:24px; text-align:center;">
 
   <br><br>
 
@@ -18,7 +18,7 @@
 
   <p id="codice" style="margin-top:20px; font-size:16px; color:#888;"></p>
 
-  <div id="output" style="margin-top:30px; font-size:20px; max-width:600px; margin-left:auto; margin-right:auto; white-space:pre-line;"></div>
+  <div id="output" style="margin-top:30px; font-size:20px; max-width:700px; margin-left:auto; margin-right:auto; white-space:pre-line;"></div>
 
   <script>
     const poesie = {
@@ -89,8 +89,33 @@ che fa eco alle rovine del passato`
       let risultato = "";
 
       for (let i = 0; i < testo.length; i++) {
-        if (testo[i] === "♥") risultato += "1";
-        if (testo[i] === "♠") risultato += "0";
+
+        let char = testo[i];
+
+        // CUORI = 1
+        if (
+          char === "❤️" ||
+          char === "❤" ||
+          char === "♥" ||
+          char === "♡" ||
+          char === "💖" ||
+          char === "💗" ||
+          char === "💓" ||
+          char === "💞" ||
+          char === "💕" ||
+          char === "💘"
+        ) {
+          risultato += "1";
+        }
+
+        // PICCHE = 0
+        if (
+          char === "♠" ||
+          char === "♠️"
+        ) {
+          risultato += "0";
+        }
+
       }
 
       document.getElementById("codice").innerText = "Codice: " + risultato;
