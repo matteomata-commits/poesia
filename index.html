@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <title>Simboli poetici</title>
 </head>
-<body style="font-family: serif; text-align:center; margin-top:80px;">
+<body style="font-family: serif; text-align:center; margin-top:80px; padding: 0 20px;">
 
   <h2>Inserisci ♥ e ♠</h2>
 
@@ -16,9 +16,26 @@
     Converti
   </button>
 
-  <p id="output" style="margin-top:30px; font-size:20px;"></p>
+  <p id="codice" style="margin-top:20px; font-size:16px; color:#888;"></p>
+
+  <div id="output" style="margin-top:30px; font-size:20px; max-width:600px; margin-left:auto; margin-right:auto; white-space:pre-line;"></div>
 
   <script>
+    const poesie = {
+      "1010": {
+        titolo: "Addio fratello addio",
+        testo: "Qui andrà il testo della poesia\ncollegata al codice 1010..."
+      },
+      "0110": {
+        titolo: "Seconda poesia di prova",
+        testo: "Qui andrà un'altra poesia\ncollegata al codice 0110..."
+      },
+      "1100": {
+        titolo: "Terza poesia di prova",
+        testo: "E qui un'altra ancora\ncollegata al codice 1100..."
+      }
+    };
+
     function converti() {
       let testo = document.getElementById("input").value;
       let risultato = "";
@@ -28,7 +45,18 @@
         if (testo[i] === "♠") risultato += "0";
       }
 
-      document.getElementById("output").innerText = "Codice: " + risultato;
+      document.getElementById("codice").innerText = "Codice: " + risultato;
+
+      const output = document.getElementById("output");
+      const poesia = poesie[risultato];
+
+      if (poesia) {
+        output.innerHTML = "<h3>" + poesia.titolo + "</h3>" + poesia.testo;
+      } else if (risultato.length === 0) {
+        output.innerHTML = "";
+      } else {
+        output.innerHTML = "<span style='color:#aa3333;'>Nessuna poesia trovata per questo codice.</span>";
+      }
     }
   </script>
 
