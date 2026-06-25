@@ -7,14 +7,35 @@
 
 <body style="font-family: serif; text-align:center; margin-top:80px; padding: 0 20px;">
 
-  <h2>Inserisci ❤️ e ♠️</h2>
+  <h2>Costruisci il codice</h2>
 
-  <input id="input" placeholder="es: ❤️♠️❤️♠️" style="font-size:24px; text-align:center; width:300px;">
+  <!-- INPUT VISIVO -->
+  <input id="input" readonly
+    style="font-size:24px; text-align:center; width:300px;">
 
   <br><br>
 
+  <!-- BOTTONI -->
+  <div style="display:flex; justify-content:center; gap:40px; margin-bottom:20px;">
+
+    <button onclick="aggiungi('1')"
+      style="font-size:30px; padding:10px 20px;">
+      ❤️
+    </button>
+
+    <button onclick="aggiungi('0')"
+      style="font-size:30px; padding:10px 20px;">
+      ♠️
+    </button>
+
+  </div>
+
   <button onclick="converti()" style="font-size:18px;">
     Converti
+  </button>
+
+  <button onclick="reset()" style="font-size:18px;">
+    Reset
   </button>
 
   <p id="codice" style="margin-top:20px; font-size:16px; color:#888;"></p>
@@ -83,21 +104,23 @@ che fa eco alle rovine del passato`
       }
     };
 
-    function converti() {
-      let testo = document.getElementById("input").value;
+    function aggiungi(valore) {
+      document.getElementById("input").value += valore;
+    }
 
-      // 🔥 FIX COMPLETO: pulizia emoji + caratteri invisibili
-      let risultato = testo
-        .normalize("NFKD")
-        .replace(/\uFE0F/g, "")
-        .replace(/\s/g, "")
-        .replace(/❤️|❤|♥|♡|💖|💗|💓|💞|💕|💘/g, "1")
-        .replace(/♠|♠️|♤/g, "0");
+    function reset() {
+      document.getElementById("input").value = "";
+      document.getElementById("codice").innerText = "";
+      document.getElementById("output").innerHTML = "";
+    }
+
+    function converti() {
+      let risultato = document.getElementById("input").value;
 
       document.getElementById("codice").innerText = "Codice: " + risultato;
 
-      const output = document.getElementById("output");
       const poesia = poesie[risultato];
+      const output = document.getElementById("output");
 
       if (poesia) {
         output.innerHTML = "<h3>" + poesia.titolo + "</h3>" + poesia.testo;
