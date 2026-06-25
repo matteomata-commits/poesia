@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <title>Simboli poetici</title>
 </head>
+
 <body style="font-family: serif; text-align:center; margin-top:80px; padding: 0 20px;">
 
   <h2>Inserisci emoji (cuori e picche)</h2>
@@ -22,7 +23,6 @@
 
   <script>
     const poesie = {
-
       "1010": {
         titolo: "Goccia di storia",
         testo: `c'è una goccia di sangue o di rugiada
@@ -81,49 +81,16 @@ che si fa polvere tra le mie dita
 oggi la luna è una perla di cenere
 che fa eco alle rovine del passato`
       }
-
     };
 
     function converti() {
       let testo = document.getElementById("input").value;
-      let risultato = "";
 
-      for (let i = 0; i < testo.length; i++) {
-
-        let char = testo[i];
-
-        // CUORI = 1
-        if (
-          char === "❤️" ||
-          char === "❤" ||
-          char === "♥" ||
-          char === "♡" ||
-          char === "💖" ||
-          char === "💗" ||
-          char === "💓" ||
-          char === "💞" ||
-          char === "💕" ||
-          char === "💘"
-        ) {
-          risultato += "1";
-        }
-
-        // PICCHE = 0
-        if (
-          char === "♠" ||
-          char === "♠️"
-        ) {
-          risultato += "0";
-        }
-
-      }
-      // CUORI → 1
-      testo = testo.replace(/❤️|❤|♥|♡|💖|💗|💓|💞|💕|💘/g, "1");
-
-      // PICCHE → 0
-      testo = testo.replace(/♠️|♠/g, "0");
-
-      let risultato = testo;
+      // normalizzazione + conversione stabile
+      let risultato = testo
+        .replace(/\s/g, "")
+        .replace(/❤️|❤|♥|♡|💖|💗|💓|💞|💕|💘/g, "1")
+        .replace(/♠️|♠|♤/g, "0");
 
       document.getElementById("codice").innerText = "Codice: " + risultato;
 
