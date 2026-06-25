@@ -86,37 +86,14 @@ che fa eco alle rovine del passato`
 
     function converti() {
       let testo = document.getElementById("input").value;
-      let risultato = "";
 
-      for (let i = 0; i < testo.length; i++) {
+      // CUORI → 1
+      testo = testo.replace(/❤️|❤|♥|♡|💖|💗|💓|💞|💕|💘/g, "1");
 
-        let char = testo[i];
+      // PICCHE → 0
+      testo = testo.replace(/♠️|♠/g, "0");
 
-        // CUORI = 1
-        if (
-          char === "❤️" ||
-          char === "❤" ||
-          char === "♥" ||
-          char === "♡" ||
-          char === "💖" ||
-          char === "💗" ||
-          char === "💓" ||
-          char === "💞" ||
-          char === "💕" ||
-          char === "💘"
-        ) {
-          risultato += "1";
-        }
-
-        // PICCHE = 0
-        if (
-          char === "♠" ||
-          char === "♠️"
-        ) {
-          risultato += "0";
-        }
-
-      }
+      let risultato = testo;
 
       document.getElementById("codice").innerText = "Codice: " + risultato;
 
