@@ -7,9 +7,9 @@
 
 <body style="font-family: serif; text-align:center; margin-top:80px; padding: 0 20px;">
 
-  <h2>Inserisci emoji (cuori e picche)</h2>
+  <h2>Inserisci ❤️ e ♠️</h2>
 
-  <input id="input" placeholder="es: ❤️♠❤️♠" style="font-size:24px; text-align:center;">
+  <input id="input" placeholder="es: ❤️♠️❤️♠️" style="font-size:24px; text-align:center; width:300px;">
 
   <br><br>
 
@@ -86,11 +86,13 @@ che fa eco alle rovine del passato`
     function converti() {
       let testo = document.getElementById("input").value;
 
-      // normalizzazione + conversione stabile
+      // 🔥 FIX COMPLETO: pulizia emoji + caratteri invisibili
       let risultato = testo
+        .normalize("NFKD")
+        .replace(/\uFE0F/g, "")
         .replace(/\s/g, "")
         .replace(/❤️|❤|♥|♡|💖|💗|💓|💞|💕|💘/g, "1")
-        .replace(/♠️|♠|♤/g, "0");
+        .replace(/♠|♠️|♤/g, "0");
 
       document.getElementById("codice").innerText = "Codice: " + risultato;
 
@@ -102,7 +104,7 @@ che fa eco alle rovine del passato`
       } else if (risultato.length === 0) {
         output.innerHTML = "";
       } else {
-        output.innerHTML = "<span style='color:#aa3333;'>Nessuna poesia trovata per questo codice.</span>";
+        output.innerHTML = "<span style='color:#aa3333;'>Nessuna poesia trovata</span>";
       }
     }
   </script>
