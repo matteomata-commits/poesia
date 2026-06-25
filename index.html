@@ -6,9 +6,9 @@
 </head>
 <body style="font-family: serif; text-align:center; margin-top:80px; padding: 0 20px;">
 
-  <h2>Inserisci emoji (cuori e picche)</h2>
+  <h2>Inserisci simboli o emoji</h2>
 
-  <input id="input" placeholder="es: ❤️♠❤️♠" style="font-size:24px; text-align:center;">
+  <input id="input" placeholder="es: ❤️♠❤️♠ oppure ♥♠♥♠" style="font-size:24px; text-align:center;">
 
   <br><br>
 
@@ -86,14 +86,35 @@ che fa eco alle rovine del passato`
 
     function converti() {
       let testo = document.getElementById("input").value;
+      let risultato = "";
 
-      // CUORI → 1
-      testo = testo.replace(/❤️|❤|♥|♡|💖|💗|💓|💞|💕|💘/g, "1");
+      let chars = Array.from(testo);
 
-      // PICCHE → 0
-      testo = testo.replace(/♠️|♠/g, "0");
+      for (let symbol of chars) {
 
-      let risultato = testo;
+        // CUORI = 1 (tutte le varianti)
+        if (
+          symbol.includes("❤") ||
+          symbol.includes("♥") ||
+          symbol.includes("♡") ||
+          symbol.includes("💖") ||
+          symbol.includes("💗") ||
+          symbol.includes("💓") ||
+          symbol.includes("💞") ||
+          symbol.includes("💕") ||
+          symbol.includes("💘")
+        ) {
+          risultato += "1";
+        }
+
+        // PICCHE = 0
+        else if (
+          symbol.includes("♠")
+        ) {
+          risultato += "0";
+        }
+
+      }
 
       document.getElementById("codice").innerText = "Codice: " + risultato;
 
