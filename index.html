@@ -6,9 +6,9 @@
 </head>
 <body style="font-family: serif; text-align:center; margin-top:80px; padding: 0 20px;">
 
-  <h2>Inserisci simboli o emoji</h2>
+  <h2>Inserisci emoji (cuori e picche)</h2>
 
-  <input id="input" placeholder="es: ❤️♠❤️♠ oppure ♡♤♡♤" style="font-size:24px; text-align:center;">
+  <input id="input" placeholder="es: ❤️♠❤️♠" style="font-size:24px; text-align:center;">
 
   <br><br>
 
@@ -86,11 +86,42 @@ che fa eco alle rovine del passato`
 
     function converti() {
       let testo = document.getElementById("input").value;
+      let risultato = "";
 
-      // NORMALIZZAZIONE ROBUSTA
-      testo = testo
-        .replace(/❤️|❤|♥|♡|💖|💗|💓|💞|💕|💘/g, "1")
-        .replace(/♠️|♠|♤/g, "0");
+      for (let i = 0; i < testo.length; i++) {
+
+        let char = testo[i];
+
+        // CUORI = 1
+        if (
+          char === "❤️" ||
+          char === "❤" ||
+          char === "♥" ||
+          char === "♡" ||
+          char === "💖" ||
+          char === "💗" ||
+          char === "💓" ||
+          char === "💞" ||
+          char === "💕" ||
+          char === "💘"
+        ) {
+          risultato += "1";
+        }
+
+        // PICCHE = 0
+        if (
+          char === "♠" ||
+          char === "♠️"
+        ) {
+          risultato += "0";
+        }
+
+      }
+      // CUORI → 1
+      testo = testo.replace(/❤️|❤|♥|♡|💖|💗|💓|💞|💕|💘/g, "1");
+
+      // PICCHE → 0
+      testo = testo.replace(/♠️|♠/g, "0");
 
       let risultato = testo;
 
