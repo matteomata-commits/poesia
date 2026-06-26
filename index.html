@@ -17,13 +17,28 @@
   <!-- BOTTONI SIMBOLI -->
 
   <button onclick="aggiungi('▲','A')"
-    style="font-size:40px; padding:10px 20px; margin-right:20px;">
+    style="font-size:40px; padding:10px 20px; margin:5px;">
     ▲
   </button>
 
   <button onclick="aggiungi('●','B')"
-    style="font-size:40px; padding:10px 20px;">
+    style="font-size:40px; padding:10px 20px; margin:5px;">
     ●
+  </button>
+
+  <button onclick="aggiungi('■','C')"
+    style="font-size:40px; padding:10px 20px; margin:5px;">
+    ■
+  </button>
+
+  <button onclick="aggiungi('★','D')"
+    style="font-size:40px; padding:10px 20px; margin:5px;">
+    ★
+  </button>
+
+  <button onclick="aggiungi('☾','E')"
+    style="font-size:40px; padding:10px 20px; margin:5px;">
+    ☾
   </button>
 
   <br><br>
@@ -46,12 +61,19 @@
       codiceInterno += valore;
     }
 
-    // 📖 poesie test
+    // 📖 poesie esempio
     const poesie = {
+
       "AB": {
         titolo: "Test poesia",
         testo: `funziona tutto 👍`
+      },
+
+      "ABCDE": {
+        titolo: "Poesia segreta",
+        testo: `hai scoperto una combinazione completa di simboli`
       }
+
     };
 
     // 🚀 invia
@@ -65,7 +87,8 @@
           poesie[codiceInterno].testo +
           "</pre>";
       } else {
-        output.innerHTML = "❌ codice non trovato: " + codiceInterno;
+        output.innerHTML =
+          "❌ codice non trovato: " + codiceInterno;
       }
     }
 
