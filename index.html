@@ -2,44 +2,30 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>Simboli Poetici</title>
+  <title>Alfabeto Poetico</title>
 </head>
 
-<body style="text-align:center; font-family:serif; margin-top:80px; padding: 0 20px;">
+<body style="text-align:center; font-family:serif; margin-top:60px; padding: 0 20px;">
 
-  <h2>Crea il codice con simboli</h2>
+  <h2>Costruisci il codice simbolico</h2>
 
   <!-- BARRA VISIVA -->
   <div id="barra"
-       style="font-size:40px; margin-bottom:20px; min-height:50px;">
+       style="font-size:40px; margin:20px auto; min-height:60px;">
   </div>
 
-  <!-- BOTTONI SIMBOLI -->
+  <!-- 🔥 SIMBOLI (PUOI AGGIUNGERNE ALTRI QUI SOTTO) -->
 
-  <button onclick="aggiungi('▲','A')"
-    style="font-size:40px; padding:10px 20px; margin:5px;">
-    ▲
-  </button>
+  <button onclick="aggiungi('▲','A')" style="font-size:40px; margin:5px;">▲</button>
+  <button onclick="aggiungi('●','B')" style="font-size:40px; margin:5px;">●</button>
+  <button onclick="aggiungi('■','C')" style="font-size:40px; margin:5px;">■</button>
+  <button onclick="aggiungi('★','D')" style="font-size:40px; margin:5px;">★</button>
+  <button onclick="aggiungi('☾','E')" style="font-size:40px; margin:5px;">☾</button>
 
-  <button onclick="aggiungi('●','B')"
-    style="font-size:40px; padding:10px 20px; margin:5px;">
-    ●
-  </button>
-
-  <button onclick="aggiungi('■','C')"
-    style="font-size:40px; padding:10px 20px; margin:5px;">
-    ■
-  </button>
-
-  <button onclick="aggiungi('★','D')"
-    style="font-size:40px; padding:10px 20px; margin:5px;">
-    ★
-  </button>
-
-  <button onclick="aggiungi('☾','E')"
-    style="font-size:40px; padding:10px 20px; margin:5px;">
-    ☾
-  </button>
+  <!-- 👉 ESEMPI AGGIUNTI (puoi duplicare questo blocco) -->
+  <button onclick="aggiungi('⚫','F')" style="font-size:40px; margin:5px;">⚫</button>
+  <button onclick="aggiungi('✶','G')" style="font-size:40px; margin:5px;">✶</button>
+  <button onclick="aggiungi('⌖','H')" style="font-size:40px; margin:5px;">⌖</button>
 
   <br><br>
 
@@ -52,31 +38,36 @@
 
   <script>
 
-    // 🔥 codice interno
+    // 🔥 codice interno (logico)
     let codiceInterno = "";
 
-    // 👉 aggiunge simbolo + valore
+    // 👉 FUNZIONE GENERALE
     function aggiungi(simbolo, valore) {
       document.getElementById("barra").innerHTML += simbolo;
       codiceInterno += valore;
     }
 
-    // 📖 poesie esempio
+    // 📖 POESIE (PUOI ESPANDERE QUI)
     const poesie = {
 
       "AB": {
-        titolo: "Test poesia",
-        testo: `funziona tutto 👍`
+        titolo: "Test base",
+        testo: `funziona 👍`
       },
 
       "ABCDE": {
-        titolo: "Poesia segreta",
-        testo: `hai scoperto una combinazione completa di simboli`
+        titolo: "Combinazione 5 simboli",
+        testo: `hai attivato una sequenza completa`
+      },
+
+      "ABCDEFG": {
+        titolo: "Poesia estesa",
+        testo: `sequenza lunga attivata`
       }
 
     };
 
-    // 🚀 invia
+    // 🚀 INVIO
     function invia() {
       const output = document.getElementById("output");
 
@@ -88,11 +79,11 @@
           "</pre>";
       } else {
         output.innerHTML =
-          "❌ codice non trovato: " + codiceInterno;
+          "❌ nessuna poesia per: " + codiceInterno;
       }
     }
 
-    // 🔄 reset
+    // 🔄 RESET
     function reset() {
       document.getElementById("barra").innerHTML = "";
       document.getElementById("output").innerHTML = "";
