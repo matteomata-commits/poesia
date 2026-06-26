@@ -2,101 +2,50 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>Alfabeto Simbolico</title>
+  <title>Simboli</title>
 </head>
 
-<body style="text-align:center; font-family:serif; margin-top:60px; padding:20px;">
+<body style="text-align:center; font-family:serif; margin-top:60px;">
 
-  <h2>Costruisci il codice simbolico</h2>
+  <h2>Test simboli</h2>
 
-  <!-- BARRA VISIVA -->
-  <div id="barra"
-       style="font-size:40px; margin:20px auto; min-height:60px;">
-  </div>
+  <div id="barra" style="font-size:40px; margin:20px;"></div>
 
-  <!-- 🔥 BOTTONI (TUTTI VISIBILI E FUNZIONANTI) -->
+  <button onclick="add('▲','A')" style="font-size:40px;">▲</button>
+  <button onclick="add('●','B')" style="font-size:40px;">●</button>
+  <button onclick="add('■','C')" style="font-size:40px;">■</button>
 
-  <div style="margin-bottom:10px;">
-    <button onclick="aggiungi('▲','A')" style="font-size:40px;">▲</button>
-    <button onclick="aggiungi('●','B')" style="font-size:40px;">●</button>
-    <button onclick="aggiungi('■','C')" style="font-size:40px;">■</button>
-  </div>
+  <br><br>
 
-  <div style="margin-bottom:10px;">
-    <button onclick="aggiungi('★','D')" style="font-size:40px;">★</button>
-    <button onclick="aggiungi('☾','E')" style="font-size:40px;">☾</button>
-    <button onclick="aggiungi('⚫','F')" style="font-size:40px;">⚫</button>
-  </div>
+  <button onclick="check()">Invia</button>
+  <button onclick="reset()">Reset</button>
 
-  <div style="margin-bottom:10px;">
-    <button onclick="aggiungi('✶','G')" style="font-size:40px;">✶</button>
-    <button onclick="aggiungi('⌖','H')" style="font-size:40px;">⌖</button>
-    <button onclick="aggiungi('☀','I')" style="font-size:40px;">☀</button>
-  </div>
-
-  <br>
-
-  <!-- COMANDI -->
-  <button onclick="invia()" style="font-size:18px;">Invia</button>
-  <button onclick="reset()" style="font-size:18px;">Reset</button>
-
-  <!-- OUTPUT -->
-  <div id="output" style="margin-top:20px; font-size:20px;"></div>
+  <div id="out" style="margin-top:20px;"></div>
 
   <script>
+    let code = "";
 
-    // 🔥 codice interno
-    let codiceInterno = "";
+    function add(symbol, val) {
+      document.getElementById("barra").innerHTML += symbol;
+      code += val;
 
-    // 👉 aggiunge simbolo + lettera
-    function aggiungi(simbolo, valore) {
-      document.getElementById("barra").innerHTML += simbolo;
-      codiceInterno += valore;
+      console.log("barra:", document.getElementById("barra").innerHTML);
+      console.log("code:", code);
     }
 
-    // 📖 poesie esempio (puoi cambiare)
-    const poesie = {
-
-      "AB": {
-        titolo: "Test base",
-        testo: `funziona 👍`
-      },
-
-      "ABC": {
-        titolo: "Sequenza 3 simboli",
-        testo: `hai attivato una combinazione semplice`
-      },
-
-      "ABCDE": {
-        titolo: "Sequenza completa",
-        testo: `hai attivato una poesia segreta`
-      }
-
-    };
-
-    // 🚀 invio
-    function invia() {
-      const output = document.getElementById("output");
-
-      if (poesie[codiceInterno]) {
-        output.innerHTML =
-          "<h3>" + poesie[codiceInterno].titolo + "</h3>" +
-          "<pre style='white-space:pre-wrap; font-size:18px;'>" +
-          poesie[codiceInterno].testo +
-          "</pre>";
+    function check() {
+      if (code === "ABC") {
+        document.getElementById("out").innerHTML = "✔ poesia sbloccata";
       } else {
-        output.innerHTML =
-          "❌ nessuna poesia per: " + codiceInterno;
+        document.getElementById("out").innerHTML = "❌ codice: " + code;
       }
     }
 
-    // 🔄 reset
     function reset() {
+      code = "";
       document.getElementById("barra").innerHTML = "";
-      document.getElementById("output").innerHTML = "";
-      codiceInterno = "";
+      document.getElementById("out").innerHTML = "";
     }
-
   </script>
 
 </body>
