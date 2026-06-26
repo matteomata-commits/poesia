@@ -2,20 +2,21 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>Simboli</title>
+  <title>Simboli Poetici</title>
 </head>
 
-<body style="text-align:center; font-family:serif; margin-top:60px;">
+<body style="text-align:center; font-family:serif; margin-top:50px;">
 
   <h2>Costruisci il codice simbolico</h2>
 
-  <!-- 🔲 BARRA -->
+  <!-- 🔲 BARRA VISIVA -->
   <div id="barra"
        style="
-         width:320px;
+         width:90%;
+         max-width:400px;
          height:70px;
          margin:20px auto;
-         border:2px solid #333;
+         border:2px solid #000;
          font-size:40px;
          display:flex;
          align-items:center;
@@ -26,7 +27,7 @@
        ">
   </div>
 
-  <!-- 🔥 BOTTONI (9 SIMBOLI) -->
+  <!-- 🔘 BOTTONI SIMBOLI -->
 
   <button onclick="add('▲','A')" style="font-size:40px;">▲</button>
   <button onclick="add('●','B')" style="font-size:40px;">●</button>
@@ -47,34 +48,54 @@
   <br><br>
 
   <!-- CONTROLLI -->
-  <button onclick="check()">Invia</button>
-  <button onclick="reset()">Reset</button>
+  <button onclick="check()" style="font-size:18px;">Invia</button>
+  <button onclick="reset()" style="font-size:18px;">Reset</button>
 
-  <div id="out" style="margin-top:20px;"></div>
+  <!-- OUTPUT -->
+  <div id="out" style="margin-top:20px; font-size:20px;"></div>
 
   <script>
 
+    // 🔥 codice interno
     let code = "";
 
+    // 👉 aggiunge simbolo nella barra + codice
     function add(symbol, val) {
-      document.getElementById("barra").innerHTML += symbol;
+      document.getElementById("barra").innerText += symbol;
       code += val;
     }
 
+    // 📖 esempio poesie
+    const poesie = {
+      "AB": {
+        titolo: "Test base",
+        testo: "funziona 👍"
+      },
+
+      "ABCDEFGHI": {
+        titolo: "Sequenza completa",
+        testo: "hai attivato la poesia segreta completa"
+      }
+    };
+
+    // 🚀 controllo
     function check() {
-      if (code === "ABC") {
-        document.getElementById("out").innerHTML = "✔ poesia base sbloccata";
-      } else if (code === "ABCDEFGHI") {
-        document.getElementById("out").innerHTML = "✨ poesia completa attivata";
+      const out = document.getElementById("out");
+
+      if (poesie[code]) {
+        out.innerHTML =
+          "<h3>" + poesie[code].title + "</h3>" +
+          "<p>" + poesie[code].testo + "</p>";
       } else {
-        document.getElementById("out").innerHTML = "❌ codice: " + code;
+        out.innerHTML = "❌ codice non trovato: " + code;
       }
     }
 
+    // 🔄 reset
     function reset() {
       code = "";
-      document.getElementById("barra").innerHTML = "";
-      document.getElementById("out").innerHTML = "";
+      document.getElementById("barra").innerText = "";
+      document.getElementById("out").innerText = "";
     }
 
   </script>
