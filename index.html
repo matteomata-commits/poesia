@@ -1,104 +1,53 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="UTF-8">
-  <title>Simboli Poetici</title>
+<meta charset="UTF-8">
+<title>TEST SIMBOLI</title>
 </head>
 
-<body style="text-align:center; font-family:serif; margin-top:50px;">
+<body style="text-align:center; font-family:serif; margin-top:40px;">
 
-  <h2>Costruisci il codice simbolico</h2>
+<h2>TEST SIMBOLI</h2>
 
-  <!-- 🔲 BARRA VISIVA -->
-  <div id="barra"
-       style="
-         width:90%;
-         max-width:400px;
-         height:70px;
-         margin:20px auto;
-         border:2px solid #000;
-         font-size:40px;
-         display:flex;
-         align-items:center;
-         justify-content:center;
-         gap:8px;
-         overflow-x:auto;
-         white-space:nowrap;
-       ">
-  </div>
+<!-- BARRA -->
+<div id="barra" style="border:2px solid black; height:60px; font-size:40px; width:90%; max-width:400px; margin:20px auto;"></div>
 
-  <!-- 🔘 BOTTONI SIMBOLI -->
+<!-- BOTTONI SIMBOLI -->
+<button onclick="add('▲','A')" style="font-size:40px;">▲</button>
+<button onclick="add('●','B')" style="font-size:40px;">●</button>
+<button onclick="add('■','C')" style="font-size:40px;">■</button>
+<button onclick="add('★','D')" style="font-size:40px;">★</button>
+<button onclick="add('☾','E')" style="font-size:40px;">☾</button>
+<button onclick="add('⚫','F')" style="font-size:40px;">⚫</button>
+<button onclick="add('✶','G')" style="font-size:40px;">✶</button>
+<button onclick="add('⌖','H')" style="font-size:40px;">⌖</button>
+<button onclick="add('☀','I')" style="font-size:40px;">☀</button>
 
-  <button onclick="add('▲','A')" style="font-size:40px;">▲</button>
-  <button onclick="add('●','B')" style="font-size:40px;">●</button>
-  <button onclick="add('■','C')" style="font-size:40px;">■</button>
+<br><br>
 
-  <br><br>
+<button onclick="reset()">RESET</button>
 
-  <button onclick="add('★','D')" style="font-size:40px;">★</button>
-  <button onclick="add('☾','E')" style="font-size:40px;">☾</button>
-  <button onclick="add('⚫','F')" style="font-size:40px;">⚫</button>
+<script>
 
-  <br><br>
+let code = "";
 
-  <button onclick="add('✶','G')" style="font-size:40px;">✶</button>
-  <button onclick="add('⌖','H')" style="font-size:40px;">⌖</button>
-  <button onclick="add('☀','I')" style="font-size:40px;">☀</button>
+// aggiunge simbolo alla barra e aggiorna codice interno
+function add(symbol, val) {
+  document.getElementById("barra").innerHTML =
+    document.getElementById("barra").innerHTML + symbol;
 
-  <br><br>
+  code = code + val;
 
-  <!-- CONTROLLI -->
-  <button onclick="check()" style="font-size:18px;">Invia</button>
-  <button onclick="reset()" style="font-size:18px;">Reset</button>
+  console.log("CODICE:", code);
+}
 
-  <!-- OUTPUT -->
-  <div id="out" style="margin-top:20px; font-size:20px;"></div>
+// reset totale
+function reset() {
+  code = "";
+  document.getElementById("barra").innerHTML = "";
+}
 
-  <script>
-
-    // 🔥 codice interno
-    let code = "";
-
-    // 👉 aggiunge simbolo nella barra + codice
-    function add(symbol, val) {
-      document.getElementById("barra").innerText += symbol;
-      code += val;
-    }
-
-    // 📖 esempio poesie
-    const poesie = {
-      "AB": {
-        titolo: "Test base",
-        testo: "funziona 👍"
-      },
-
-      "ABCDEFGHI": {
-        titolo: "Sequenza completa",
-        testo: "hai attivato la poesia segreta completa"
-      }
-    };
-
-    // 🚀 controllo
-    function check() {
-      const out = document.getElementById("out");
-
-      if (poesie[code]) {
-        out.innerHTML =
-          "<h3>" + poesie[code].title + "</h3>" +
-          "<p>" + poesie[code].testo + "</p>";
-      } else {
-        out.innerHTML = "❌ codice non trovato: " + code;
-      }
-    }
-
-    // 🔄 reset
-    function reset() {
-      code = "";
-      document.getElementById("barra").innerText = "";
-      document.getElementById("out").innerText = "";
-    }
-
-  </script>
+</script>
 
 </body>
 </html>
