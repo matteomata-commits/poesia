@@ -7,9 +7,26 @@
 
 <body style="text-align:center; font-family:serif; margin-top:60px;">
 
-  <h2>Test simboli</h2>
+  <h2>Costruisci il codice simbolico</h2>
 
-  <div id="barra" style="font-size:40px; margin:20px;"></div>
+  <!-- 🔲 BARRA -->
+  <div id="barra"
+       style="
+         width:320px;
+         height:70px;
+         margin:20px auto;
+         border:2px solid #333;
+         font-size:40px;
+         display:flex;
+         align-items:center;
+         justify-content:center;
+         gap:8px;
+         overflow-x:auto;
+         white-space:nowrap;
+       ">
+  </div>
+
+  <!-- 🔥 BOTTONI (9 SIMBOLI) -->
 
   <button onclick="add('▲','A')" style="font-size:40px;">▲</button>
   <button onclick="add('●','B')" style="font-size:40px;">●</button>
@@ -17,25 +34,38 @@
 
   <br><br>
 
+  <button onclick="add('★','D')" style="font-size:40px;">★</button>
+  <button onclick="add('☾','E')" style="font-size:40px;">☾</button>
+  <button onclick="add('⚫','F')" style="font-size:40px;">⚫</button>
+
+  <br><br>
+
+  <button onclick="add('✶','G')" style="font-size:40px;">✶</button>
+  <button onclick="add('⌖','H')" style="font-size:40px;">⌖</button>
+  <button onclick="add('☀','I')" style="font-size:40px;">☀</button>
+
+  <br><br>
+
+  <!-- CONTROLLI -->
   <button onclick="check()">Invia</button>
   <button onclick="reset()">Reset</button>
 
   <div id="out" style="margin-top:20px;"></div>
 
   <script>
+
     let code = "";
 
     function add(symbol, val) {
       document.getElementById("barra").innerHTML += symbol;
       code += val;
-
-      console.log("barra:", document.getElementById("barra").innerHTML);
-      console.log("code:", code);
     }
 
     function check() {
       if (code === "ABC") {
-        document.getElementById("out").innerHTML = "✔ poesia sbloccata";
+        document.getElementById("out").innerHTML = "✔ poesia base sbloccata";
+      } else if (code === "ABCDEFGHI") {
+        document.getElementById("out").innerHTML = "✨ poesia completa attivata";
       } else {
         document.getElementById("out").innerHTML = "❌ codice: " + code;
       }
@@ -46,6 +76,7 @@
       document.getElementById("barra").innerHTML = "";
       document.getElementById("out").innerHTML = "";
     }
+
   </script>
 
 </body>
