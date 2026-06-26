@@ -2,10 +2,10 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>Alfabeto Poetico</title>
+  <title>Alfabeto Simbolico</title>
 </head>
 
-<body style="text-align:center; font-family:serif; margin-top:60px; padding: 0 20px;">
+<body style="text-align:center; font-family:serif; margin-top:60px; padding:20px;">
 
   <h2>Costruisci il codice simbolico</h2>
 
@@ -14,20 +14,27 @@
        style="font-size:40px; margin:20px auto; min-height:60px;">
   </div>
 
-  <!-- 🔥 SIMBOLI (PUOI AGGIUNGERNE ALTRI QUI SOTTO) -->
+  <!-- 🔥 BOTTONI (TUTTI VISIBILI E FUNZIONANTI) -->
 
-  <button onclick="aggiungi('▲','A')" style="font-size:40px; margin:5px;">▲</button>
-  <button onclick="aggiungi('●','B')" style="font-size:40px; margin:5px;">●</button>
-  <button onclick="aggiungi('■','C')" style="font-size:40px; margin:5px;">■</button>
-  <button onclick="aggiungi('★','D')" style="font-size:40px; margin:5px;">★</button>
-  <button onclick="aggiungi('☾','E')" style="font-size:40px; margin:5px;">☾</button>
+  <div style="margin-bottom:10px;">
+    <button onclick="aggiungi('▲','A')" style="font-size:40px;">▲</button>
+    <button onclick="aggiungi('●','B')" style="font-size:40px;">●</button>
+    <button onclick="aggiungi('■','C')" style="font-size:40px;">■</button>
+  </div>
 
-  <!-- 👉 ESEMPI AGGIUNTI (puoi duplicare questo blocco) -->
-  <button onclick="aggiungi('⚫','F')" style="font-size:40px; margin:5px;">⚫</button>
-  <button onclick="aggiungi('✶','G')" style="font-size:40px; margin:5px;">✶</button>
-  <button onclick="aggiungi('⌖','H')" style="font-size:40px; margin:5px;">⌖</button>
+  <div style="margin-bottom:10px;">
+    <button onclick="aggiungi('★','D')" style="font-size:40px;">★</button>
+    <button onclick="aggiungi('☾','E')" style="font-size:40px;">☾</button>
+    <button onclick="aggiungi('⚫','F')" style="font-size:40px;">⚫</button>
+  </div>
 
-  <br><br>
+  <div style="margin-bottom:10px;">
+    <button onclick="aggiungi('✶','G')" style="font-size:40px;">✶</button>
+    <button onclick="aggiungi('⌖','H')" style="font-size:40px;">⌖</button>
+    <button onclick="aggiungi('☀','I')" style="font-size:40px;">☀</button>
+  </div>
+
+  <br>
 
   <!-- COMANDI -->
   <button onclick="invia()" style="font-size:18px;">Invia</button>
@@ -38,16 +45,16 @@
 
   <script>
 
-    // 🔥 codice interno (logico)
+    // 🔥 codice interno
     let codiceInterno = "";
 
-    // 👉 FUNZIONE GENERALE
+    // 👉 aggiunge simbolo + lettera
     function aggiungi(simbolo, valore) {
       document.getElementById("barra").innerHTML += simbolo;
       codiceInterno += valore;
     }
 
-    // 📖 POESIE (PUOI ESPANDERE QUI)
+    // 📖 poesie esempio (puoi cambiare)
     const poesie = {
 
       "AB": {
@@ -55,19 +62,19 @@
         testo: `funziona 👍`
       },
 
-      "ABCDE": {
-        titolo: "Combinazione 5 simboli",
-        testo: `hai attivato una sequenza completa`
+      "ABC": {
+        titolo: "Sequenza 3 simboli",
+        testo: `hai attivato una combinazione semplice`
       },
 
-      "ABCDEFG": {
-        titolo: "Poesia estesa",
-        testo: `sequenza lunga attivata`
+      "ABCDE": {
+        titolo: "Sequenza completa",
+        testo: `hai attivato una poesia segreta`
       }
 
     };
 
-    // 🚀 INVIO
+    // 🚀 invio
     function invia() {
       const output = document.getElementById("output");
 
@@ -83,7 +90,7 @@
       }
     }
 
-    // 🔄 RESET
+    // 🔄 reset
     function reset() {
       document.getElementById("barra").innerHTML = "";
       document.getElementById("output").innerHTML = "";
